@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.GridLayout
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.bennu.administrador.simulador20.InputFragment"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_alignParentLeft="true"
+    android:layout_alignParentStart="true"
+    android:layout_below="@+id/textView"
+    android:layout_marginTop="28dp"
+    app:columnCount="3">
+
+    <Button
+        android:id="@+id/btn_casing"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="@string/btn_casing"
+        app:layout_columnWeight="1"
+        app:layout_rowWeight="1" />
+    <Button
+        android:id="@+id/btn_tubing"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="@string/btn_tubing"
+        app:layout_columnWeight="1"
+        app:layout_rowWeight="1" />
+    <Button
+        android:id="@+id/btn_packer"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="@string/btn_packer"
+        app:layout_columnWeight="1"
+        app:layout_rowWeight="1" />
+    <Button
+        android:id="@+id/btn_ff_up"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="@string/btn_ff_up"
+        app:layout_columnWeight="1"
+        app:layout_rowWeight="1" />
+    <Button
+        android:id="@+id/btn_ff_down"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="@string/btn_ff_down"
+        app:layout_columnWeight="1"
+        app:layout_rowWeight="1" />
+    <Button
+        android:id="@+id/btn_ff_rotation"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="@string/btn_ff_rotation"
+        app:layout_columnWeight="1"
+        app:layout_rowWeight="1" />
+    <Button
+        android:id="@+id/btn_fluid"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="@string/btn_fluid"
+        app:layout_columnWeight="1"
+        app:layout_rowWeight="1" />
+    <Button
+        android:id="@+id/btn_temperature"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="@string/btn_temperature"
+        app:layout_columnWeight="1"
+        app:layout_rowWeight="1" />
+    <Button
+        android:id="@+id/btn_pressure"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="@string/btn_pressure"
+        app:layout_columnWeight="1"
+        app:layout_rowWeight="1" />
+    <Button
+        android:id="@+id/btn_internal_friction"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="@string/btn_internal_friction"
+        app:layout_columnWeight="1"
+        app:layout_rowWeight="1" />
+    <Button
+        android:id="@+id/btn_load"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="@string/btn_load"
+        app:layout_columnWeight="1"
+        app:layout_rowWeight="1" />
+</android.support.v7.widget.GridLayout>
