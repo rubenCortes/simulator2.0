@@ -9,7 +9,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.bennu.administrador.simulador20.MainActivity"
+    tools:context=".vista.MainActivity"
     tools:showIn="@layout/app_bar_main">
 
     <TextView
@@ -18,12 +18,12 @@
         android:layout_height="wrap_content"
         android:text="Hola Mundo" />
 
-    <android.support.v7.widget.ContentFrameLayout
+    <FrameLayout
         android:id="@+id/fragment_principal"
         android:layout_below="@id/texto_saludo"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-    </android.support.v7.widget.ContentFrameLayout>
+    </FrameLayout>
 
 
 </RelativeLayout>

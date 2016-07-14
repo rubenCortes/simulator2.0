@@ -1,4 +1,4 @@
-package com.bennu.administrador.simulador20;
+package com.bennu.administrador.simulador20.vista;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
@@ -15,7 +15,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
+
+import com.bennu.administrador.simulador20.R;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, OnFragmentInteractionListener  {
@@ -60,6 +61,10 @@ public class MainActivity extends AppCompatActivity
         transaccion.replace(R.id.fragment_principal, fragmentoPrincipal);
 
         transaccion.commit();
+
+        Toolbar miToolbar = (Toolbar) findViewById( R.id.toolbar );
+
+        miToolbar.setTitle(R.string.titulo_inicial);
     }
 
     @Override
@@ -100,6 +105,8 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         FragmentTransaction transaccion = fragmentManager.beginTransaction();
 
+        Toolbar miToolbar = (Toolbar) findViewById( R.id.toolbar );
+
         int id = item.getItemId();
 
         if (id == R.id.nav_proyecto) {
@@ -115,6 +122,8 @@ public class MainActivity extends AppCompatActivity
             transaccion.replace(R.id.fragment_principal, fragmentoPrincipal);
 
             transaccion.commit();
+
+            miToolbar.setTitle(R.string.titulo_inputs);
         } else if (id == R.id.nav_outputs) {
             String parametro1 = "";
             String paramentro2 = "";
@@ -125,6 +134,7 @@ public class MainActivity extends AppCompatActivity
 
             transaccion.commit();
 
+            miToolbar.setTitle(R.string.titulo_outputs);
         } else if (id == R.id.nav_manage) {
 
         } else if (id == R.id.nav_share) {

@@ -1,4 +1,4 @@
-package com.bennu.administrador.simulador20;
+package com.bennu.administrador.simulador20.vista;
 
 /**
  * Created by administrador on 13/07/16.

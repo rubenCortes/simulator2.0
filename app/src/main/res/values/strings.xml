@@ -30,4 +30,12 @@
     <string name="nav_inputs">Inputs</string>
     <string name="nav_outputs">Outputs</string>
 
+    <!--Menu de navegacion Drawer-->
+    <string name="titulo_inicial">SIMULADOR</string>
+    <string name="titulo_inputs">Inputs</string>
+    <string name="titulo_outputs">Outputs</string>
+
+    <string name="valor_minimo">Mínimo</string>
+    <string name="valor_maximo">Máximo</string>
+
 </resources>
