@@ -48,20 +48,18 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        // Preparacion del fragmento principal inicial
+        fragmentManager = getFragmentManager();
+
+        FragmentTransaction transaccion = fragmentManager.beginTransaction();
+
         String parametro1 = "";
         String paramentro2 = "";
 
-     //   fragmentoPrincipal = InicialFragment.newInstance(parametro1, paramentro2 );
-
-        fragmentManager = getFragmentManager();
-/*        FragmentTransaction transaccion = fragmentManager.beginTransaction();
+        fragmentoPrincipal = InicialFragment.newInstance(parametro1, paramentro2 );
 
         transaccion.replace(R.id.fragment_principal, fragmentoPrincipal);
 
-        if (fragmentoPrincipal == null) Toast.makeText(this,"Fragmento nulo",Toast.LENGTH_LONG).show();
-
-        transaccion.commit();*/
+        transaccion.commit();
     }
 
     @Override
@@ -102,22 +100,11 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         FragmentTransaction transaccion = fragmentManager.beginTransaction();
 
-
-
         int id = item.getItemId();
 
         if (id == R.id.nav_proyecto) {
-            // Preparacion del fragmento principal inicial
-            String parametro1 = "";
-            String paramentro2 = "";
 
-            fragmentoPrincipal = InicialFragment.newInstance(parametro1, paramentro2 );
 
-           // FragmentTransaction transaccion = fragmentManager.beginTransaction();
-            transaccion.replace(R.id.fragment_principal, fragmentoPrincipal);
-
-            transaccion.commit();
-            // Handle the camera action
         } else if (id == R.id.nav_inputs) {
             // Preparacion del fragmento principal inicial
             String parametro1 = "";
@@ -125,7 +112,6 @@ public class MainActivity extends AppCompatActivity
 
             fragmentoPrincipal = InputFragment.newInstance(parametro1, paramentro2 );
 
-          //  FragmentTransaction transaccion = fragmentManager.beginTransaction();
             transaccion.replace(R.id.fragment_principal, fragmentoPrincipal);
 
             transaccion.commit();
@@ -135,7 +121,6 @@ public class MainActivity extends AppCompatActivity
 
             fragmentoPrincipal = OutputFragment.newInstance(parametro1, paramentro2 );
 
-      //      FragmentTransaction transaccion = fragmentManager.beginTransaction();
             transaccion.replace(R.id.fragment_principal, fragmentoPrincipal);
 
             transaccion.commit();
