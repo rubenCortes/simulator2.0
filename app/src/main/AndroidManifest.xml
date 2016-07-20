@@ -18,6 +18,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <provider
+            android:name=".datos.ProviderSimulacion4"
+            android:authorities="com.bennu.administrador.simulador20.provider"
+            android:enabled="true"
+            android:exported="false"/>
     </application>
 
 </manifest>

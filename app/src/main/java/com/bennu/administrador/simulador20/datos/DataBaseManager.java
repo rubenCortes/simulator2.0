@@ -6,8 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.provider.BaseColumns;
 
-import bennucybercafe.com.ve.simulador4.modelo.RangoMinimoMaximo;
-
+import com.bennu.administrador.simulador20.modelo.RangoMinimoMaximo;
 
 //import bennucybercafe.com.ve.simulador.datos.Contrato;
 

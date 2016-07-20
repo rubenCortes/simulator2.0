@@ -5,5 +5,5 @@ package com.bennu.administrador.simulador20.vista;
  */
 public interface OnFragmentInteractionListener {
     // TODO: Update argument type and name
-    void onFragmentInteraction(String uri);
+    void onFragmentInteraction(int idBoton);
 }

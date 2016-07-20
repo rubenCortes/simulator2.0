@@ -1,9 +1,7 @@
 package com.bennu.administrador.simulador20.vista;
 
-import android.annotation.TargetApi;
-import android.app.Activity;
 import android.content.Context;
-import android.os.Build;
+import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.view.LayoutInflater;
@@ -12,16 +10,15 @@ import android.view.ViewGroup;
 
 import com.bennu.administrador.simulador20.R;
 
-
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link InicialFragment.OnFragmentInteractionListener} interface
+ * {@link AddTubingFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link InicialFragment#newInstance} factory method to
+ * Use the {@link AddTubingFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class InicialFragment extends Fragment {
+public class AddTubingFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -33,7 +30,7 @@ public class InicialFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    public InicialFragment() {
+    public AddTubingFragment() {
         // Required empty public constructor
     }
 
@@ -43,11 +40,11 @@ public class InicialFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment InicialFragment.
+     * @return A new instance of fragment AddTubingFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static InicialFragment newInstance(String param1, String param2) {
-        InicialFragment fragment = new InicialFragment();
+    public static AddTubingFragment newInstance(String param1, String param2) {
+        AddTubingFragment fragment = new AddTubingFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -68,49 +65,24 @@ public class InicialFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_inicial, container, false);
+        return inflater.inflate(R.layout.fragment_add_tubing, container, false);
     }
 
     // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(int uri) {
+    public void onButtonPressed(Uri uri) {
         if (mListener != null) {
             mListener.onFragmentInteraction(uri);
         }
     }
 
-    /*
-   * onAttach(Context) is not called on pre API 23 versions of Android and onAttach(Activity) is deprecated
-   * Use onAttachToContext instead
-   */
-    @TargetApi(23)
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        onAttachToContext(context);
-    }
-
-    /*
-     * Deprecated on API 23
-     * Use onAttachToContext instead
-     */
-    @SuppressWarnings("deprecation")
-    @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
-            onAttachToContext(activity);
-        }
-    }
-
-    /*
-     * Called when the fragment attaches to the context
-     */
-    protected void onAttachToContext(Context context) {
         if (context instanceof OnFragmentInteractionListener) {
             mListener = (OnFragmentInteractionListener) context;
         } else {
             throw new RuntimeException(context.toString()
-                    + " must implement OnListFragmentInteractionListener");
+                    + " must implement OnFragmentInteractionListener");
         }
     }
 
@@ -120,7 +92,7 @@ public class InicialFragment extends Fragment {
         mListener = null;
     }
 
-/*    *//**
+    /**
      * This interface must be implemented by activities that contain this
      * fragment to allow an interaction in this fragment to be communicated
      * to the activity and potentially other fragments contained in that
@@ -129,9 +101,9 @@ public class InicialFragment extends Fragment {
      * See the Android Training lesson <a href=
      * "http://developer.android.com/training/basics/fragments/communicating.html"
      * >Communicating with Other Fragments</a> for more information.
-     *//*
+     */
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
-    }*/
+    }
 }

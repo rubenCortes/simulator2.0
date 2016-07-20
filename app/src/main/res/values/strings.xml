@@ -38,4 +38,23 @@
     <string name="valor_minimo">Mínimo</string>
     <string name="valor_maximo">Máximo</string>
 
+    <string name="action_agregar_fragment">Agregar en fragmento</string>
+    <string name="action_borrar_todos_fragment">Borrar en fragmento</string>
+
+
+
+    <!--Cadenas de texto para hint para los formularios fragmentos de entrada-->
+    <string name="hint_rango_minimo">Añada el rango minimo</string>
+    <string name="hint_rango_maximo">Añada el rango máximo</string>
+    <string name="hint_id">Añada el ID</string>
+    <string name="hint_od">Añada el OD</string>
+    <string name="hint_unit_weight">Añada el Unit Weight</string>
+    <string name="hint_drift">Añada el Drift</string>
+    <string name="hint_tension">Añada la tension</string>
+    <string name="hint_compression">Añada la Compression</string>
+    <string name="hint_burst">Añada el Burst</string>
+    <string name="hint_collapse">Añada el Collapse</string>
+    <string name="hint_torque_limit">Añada el Torque Limit</string>
+    <string name="hint_thermal_exp">Añada el Thermal Exp</string>
+
 </resources>

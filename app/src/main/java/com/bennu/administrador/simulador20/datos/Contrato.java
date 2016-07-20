@@ -39,7 +39,7 @@ public class Contrato
 
     // [URIS]
     // Autoridad del Content Provider
-    public final static String AUTORIDAD = "ve.com.bennucybercafe.simulador4.provider";
+    public final static String AUTORIDAD = "com.bennu.administrador.simulador20.provider";
 
     // Uri base
     public static final Uri URI_BASE = Uri.parse("content://" + AUTORIDAD);
@@ -50,7 +50,7 @@ public class Contrato
     // [/URIS]
 
     // [TIPOS_MIME]
-    public static final String BASE_CONTENIDOS = "simulacion4.";
+    public static final String BASE_CONTENIDOS = "simulador20.";
 
     public static final String TIPO_CONTENIDO = "vnd.android.cursor.dir/vnd." + BASE_CONTENIDOS;
 

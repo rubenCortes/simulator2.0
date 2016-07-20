@@ -9,8 +9,11 @@ import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.bennu.administrador.simulador20.R;
+
+import java.util.ArrayList;
 
 
 /**
@@ -21,7 +24,7 @@ import com.bennu.administrador.simulador20.R;
  * Use the {@link InputFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class InputFragment extends Fragment {
+public class InputFragment extends Fragment implements View.OnClickListener {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -67,14 +70,56 @@ public class InputFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_input, container, false);
+
+        View vista = inflater.inflate(R.layout.fragment_input, container, false);
+
+
+/*        Button btnCasing = (Button) vista.findViewById(R.id.btn_casing);
+        Button btnTubing = (Button) vista.findViewById(R.id.btn_tubing);
+        Button btnPacker = (Button) vista.findViewById(R.id.btn_packer);
+        Button btnFfUp = (Button) vista.findViewById(R.id.btn_ff_up);
+
+        Button btnFfDown = (Button) vista.findViewById(R.id.btn_ff_down);
+        Button btnFfRotation = (Button) vista.findViewById(R.id.btn_ff_rotation);
+        Button btnFluid = (Button) vista.findViewById(R.id.btn_fluid);
+        Button btnTemperature = (Button) vista.findViewById(R.id.btn_temperature);
+
+        Button btnPressure = (Button) vista.findViewById(R.id.btn_pressure);
+        Button btnInternalFriction = (Button) vista.findViewById(R.id.btn_internal_friction);
+        Button btnLoad = (Button) vista.findViewById(R.id.btn_load);*/
+
+        ArrayList<Button> arregloBotones = new ArrayList<Button>();
+
+        arregloBotones.add((Button) vista.findViewById(R.id.btn_casing));
+        arregloBotones.add((Button) vista.findViewById(R.id.btn_tubing));
+        arregloBotones.add((Button) vista.findViewById(R.id.btn_packer));
+        arregloBotones.add((Button) vista.findViewById(R.id.btn_ff_up));
+        arregloBotones.add((Button) vista.findViewById(R.id.btn_ff_down));
+        arregloBotones.add((Button) vista.findViewById(R.id.btn_ff_rotation));
+        arregloBotones.add((Button) vista.findViewById(R.id.btn_fluid));
+        arregloBotones.add((Button) vista.findViewById(R.id.btn_temperature));
+        arregloBotones.add((Button) vista.findViewById(R.id.btn_pressure));
+        arregloBotones.add((Button) vista.findViewById(R.id.btn_internal_friction));
+        arregloBotones.add((Button) vista.findViewById(R.id.btn_load));
+
+        for (Button miBoton : arregloBotones)
+        {
+            miBoton.setOnClickListener(this);
+        }
+
+        return vista;
+    }
+
+    @Override
+    public void onClick(View view) {
+        onButtonPressed(view.getId());
+
     }
 
     // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(String uri) {
+    public void onButtonPressed(int idVista) {
         if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
+            mListener.onFragmentInteraction(idVista);
         }
     }
 
@@ -119,6 +164,8 @@ public class InputFragment extends Fragment {
         super.onDetach();
         mListener = null;
     }
+
+
 
 /*    *//**
      * This interface must be implemented by activities that contain this

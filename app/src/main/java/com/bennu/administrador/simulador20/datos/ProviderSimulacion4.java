@@ -10,7 +10,7 @@ import android.net.Uri;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
 
-import bennucybercafe.com.ve.simulador4.datos.Contrato.*;
+import com.bennu.administrador.simulador20.datos.Contrato.*;
 
 /**
  * Created by administrador on 14/05/16.

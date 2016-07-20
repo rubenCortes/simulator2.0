@@ -15,14 +15,19 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.bennu.administrador.simulador20.R;
+import com.bennu.administrador.simulador20.modelo.RangoMinimoMaximo;
+import com.bennu.administrador.simulador20.vista.RangoFragment;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, OnFragmentInteractionListener  {
+        implements NavigationView.OnNavigationItemSelectedListener, OnFragmentInteractionListener, RangoFragment.OnListFragmentInteractionListener, View.OnClickListener {
 
     private FragmentManager fragmentManager;
     private Fragment fragmentoPrincipal;
+    private Toolbar miToolbar;
+    private FloatingActionButton fab;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,14 +36,17 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
+        fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.hide();
+/*        fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
-        });
+        });*/
+
+        fab.setOnClickListener( this );
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -62,7 +70,7 @@ public class MainActivity extends AppCompatActivity
 
         transaccion.commit();
 
-        Toolbar miToolbar = (Toolbar) findViewById( R.id.toolbar );
+        miToolbar = (Toolbar) findViewById( R.id.toolbar );
 
         miToolbar.setTitle(R.string.titulo_inicial);
     }
@@ -105,7 +113,7 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         FragmentTransaction transaccion = fragmentManager.beginTransaction();
 
-        Toolbar miToolbar = (Toolbar) findViewById( R.id.toolbar );
+       // Toolbar miToolbar = (Toolbar) findViewById( R.id.toolbar );
 
         int id = item.getItemId();
 
@@ -148,8 +156,143 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
-    @Override
-    public void onFragmentInteraction(String uri) {
 
+    @Override
+    public void onFragmentInteraction(int idBoton) {
+        switch (idBoton)
+        {
+            case R.id.btn_casing:
+
+                // Establece el título de la Toolbar
+
+                setTitleToolbar(R.string.btn_casing, miToolbar);
+
+                // Carga el fragmento
+                Toast.makeText(this,"Boton btn_casing",Toast.LENGTH_SHORT).show();
+
+                FragmentTransaction transaccion = fragmentManager.beginTransaction();
+
+                fragmentoPrincipal = RangoFragment.newInstance(1, R.id.btn_casing);
+
+                transaccion.replace(R.id.fragment_principal, fragmentoPrincipal );
+
+                transaccion.commit();
+
+                fab.show();
+                break;
+            case R.id.btn_tubing:
+                Toast.makeText(this,"Boton btn_tubing",Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.btn_packer:
+                Toast.makeText(this,"Boton btn_packer",Toast.LENGTH_SHORT).show();
+                break;
+
+            case R.id.btn_ff_up:
+                Toast.makeText(this,"Boton btn_ff_up",Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.btn_ff_down:
+                Toast.makeText(this,"Boton btn_ff_down",Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.btn_ff_rotation:
+                Toast.makeText(this,"Boton btn_ff_rotation",Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.btn_fluid:
+                Toast.makeText(this,"Boton btn_fluid",Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.btn_temperature:
+                Toast.makeText(this,"Boton btn_temperature",Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.btn_pressure:
+                Toast.makeText(this,"Boton btn_pressure",Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.btn_internal_friction:
+                Toast.makeText(this,"Boton btn_internal_friction",Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.btn_load:
+                Toast.makeText(this,"Boton btn_load",Toast.LENGTH_SHORT).show();
+                break;
+            default:
+                Toast.makeText(this,"Opción no existente",Toast.LENGTH_SHORT).show();
+                break;
+        }
+
+    }
+
+    @Override
+    public void onListFragmentInteraction(RangoMinimoMaximo item)
+    {
+
+        // Proceso para agregar nuevos registros
+
+        Toast.makeText(this,"Elemento presionado",Toast.LENGTH_SHORT).show();
+        FragmentTransaction transaccion = fragmentManager.beginTransaction();
+
+        fragmentoPrincipal = AddCasingFragment.newInstance("","");
+
+        transaccion.replace(R.id.fragment_principal, fragmentoPrincipal );
+
+        transaccion.commit();
+
+        fab.setImageResource(R.drawable.ic_create_white_48dp);
+
+    }
+
+    private void setTitleToolbar( int boton, Toolbar toolbar )
+    {
+        String tituloActual = toolbar.getTitle().toString();
+        String nombreBoton = getText(boton).toString();
+        String nuevoTitulo = tituloActual + " " + nombreBoton;
+
+        toolbar.setTitle(nuevoTitulo);
+    }
+
+
+    // Evento de comportamiento de boton flotante
+    @Override
+    public void onClick(View view)
+    {
+        int id = view.getId();
+
+        if (id == R.id.fab)
+        {
+           // Toast.makeText(this,"Boton flotante presionado",Toast.LENGTH_SHORT).show();
+            //Snackbar.make(view, "Botón flotante presionado", Snackbar.LENGTH_LONG).setAction("Action", null).show();
+            //setTitleToolbar(R.string.btn_casing, miToolbar);
+
+            // Carga el fragmento
+            //Toast.makeText(this,"Boton btn_casing",Toast.LENGTH_SHORT).show();
+
+
+            if (fragmentoPrincipal instanceof RangoFragment)
+            {
+
+                int btnPadre = ((RangoFragment) fragmentoPrincipal).getBtnPadre();
+
+                switch (btnPadre)
+                {
+                    case R.id.btn_casing:
+
+                        FragmentTransaction transaccion = fragmentManager.beginTransaction();
+
+                        fragmentoPrincipal = AddCasingFragment.newInstance("","");
+
+                        transaccion.replace(R.id.fragment_principal, fragmentoPrincipal );
+
+                        transaccion.commit();
+
+                        fab.setImageResource(R.drawable.ic_save_white_48dp);
+                        //fab.hide();
+                        break;
+                    case R.id.btn_tubing:
+                        break;
+                }
+
+
+
+            }
+
+
+
+        }
     }
 }
