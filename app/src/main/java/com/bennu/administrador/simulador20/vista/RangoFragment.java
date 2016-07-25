@@ -20,9 +20,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
@@ -282,7 +279,7 @@ public class RangoFragment extends Fragment
     {
         int id;
         ViewAdapter.ViewHolder vh = (ViewAdapter.ViewHolder) recyclerView.findViewHolderForAdapterPosition(position);
-        id = (int) vh.mItem.getId();
+        id = (int) vh.mItem.getIdPrimario();
         Toast.makeText( getActivity(), "Posición eliminada: " + id, Toast.LENGTH_SHORT  ).show();
         ContentResolver contentResolver = getActivity().getContentResolver();
         int resultado = contentResolver.delete( Contrato.AddCasingContrato.crearUriAddCasing(String.valueOf(id)),null,null );

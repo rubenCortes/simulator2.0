@@ -4,7 +4,7 @@ package com.bennu.administrador.simulador20.modelo;
  * Created by Rubén on 3/5/2016.
  */
 public class RangoMinimoMaximo {
-    private int id;
+    private int idPrimario;
     private double minimo;
     private double maximo;
 
@@ -13,15 +13,14 @@ public class RangoMinimoMaximo {
         this(minimo, maximo, 0);
     }
 
-    public RangoMinimoMaximo(double minimo, double maximo, int id)
-    {
-        this.id = id;
+    public RangoMinimoMaximo(double minimo, double maximo, int idPrimario) {
+        this.idPrimario = idPrimario;
         this.minimo = minimo;
         this.maximo = maximo;
     }
 
-    public double getId() {
-        return id;
+    public double getIdPrimario() {
+        return idPrimario;
     }
 
     public double getMaximo() {
@@ -33,8 +32,8 @@ public class RangoMinimoMaximo {
     }
 
 
-    public void setId(int id) {
-        this.id = id;
+    public void setIdPrimario(int idPrimario) {
+        this.idPrimario = idPrimario;
     }
 
     public void setMaximo(double maximo) {

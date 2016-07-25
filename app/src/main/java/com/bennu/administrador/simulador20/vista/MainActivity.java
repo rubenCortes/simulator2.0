@@ -156,7 +156,7 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
-
+    //gestionas bien las ramas
     @Override
     public void onFragmentInteraction(int idBoton) {
         switch (idBoton)
