@@ -37,6 +37,62 @@ public class Contrato
         String THERMAL_EXP = "thermal_exp";
     }
 
+    public interface ColumnasAddPacker
+    {
+        String ID_ADD_PACKER = "id_add_packer";
+        String RANGO_MINIMO = "rango_minimo";
+        String RANGO_MAXIMO = "rango_maximo";
+        String ID = "id";
+        String OD = "od";
+        String BURST = "busrt";
+        String COLLAPSE = "collapse";
+        String TENSION = "tension";
+        String COMPRESSION = "compression";
+        String HOLDOWN = "holdown";
+        String INITIAL_SLACK_OFF = "initial_slack_off";
+        String INITIAL_TENSION = "initial_tension";
+
+    }
+
+    public interface ColumnasAddFfUp
+    {
+        String ID_ADD_FF_UP = "id_add_ff_up";
+        String RANGO_MINIMO = "rango_minimo";
+        String RANGO_MAXIMO = "rango_maximo";
+        String CH = "ch";
+        String OH = "oh";
+    }
+
+    public interface ColumnasAddFfDown
+    {
+        String ID_ADD_FF_DOWN = "id_add_ff_down";
+        String RANGO_MINIMO = "rango_minimo";
+        String RANGO_MAXIMO = "rango_maximo";
+        String CH = "ch";
+        String OH = "oh";
+    }
+
+    public interface ColumnasAddFfRotation
+    {
+        String ID_ADD_FF_ROTATION = "id_add_ff_rotation";
+        String RANGO_MINIMO = "rango_minimo";
+        String RANGO_MAXIMO = "rango_maximo";
+        String CH = "ch";
+        String OH = "oh";
+    }
+
+    public interface ColumnasAddFluid
+    {
+        String ID_ADD_FLUID = "id_add_fluid";
+        String RANGO_MINIMO = "rango_minimo";
+        String RANGO_MAXIMO = "rango_maximo";
+        String INITIAL_INTERNAL_FLUID_DENSITY = "initial_internal_fluid_density";
+        String INITIAL_EXTERNAL_FLUID_DENSITY = "initial_external_fluid_density";
+        String FINAL_INTERNAL_FLUID_DENSITY = "final_internal_fluid_density";
+        String FINAL_EXTERNAL_FLUID_DENSITY = "initial_external_fluid_density";
+    }
+
+
     // [URIS]
     // Autoridad del Content Provider
     public final static String AUTORIDAD = "com.bennu.administrador.simulador20.provider";
@@ -46,6 +102,12 @@ public class Contrato
 
     private static final String RUTA_ADD_CASSING = "add_casing";
     private static final String RUTA_ADD_TUBING = "add_tubing";
+    private static final String RUTA_ADD_PACKER = "add_ff_packer";
+    private static final String RUTA_ADD_FF_UP = "add_ff_up";
+    private static final String RUTA_ADD_FF_DOWN = "add_ff_down";
+    private static final String RUTA_ADD_FF_ROTATION = "add_ff_rotation";
+    private static final String RUTA_ADD_FLUID = "add_fluid";
+
 
     // [/URIS]
 
@@ -111,4 +173,21 @@ public class Contrato
         }
     }
 
+    public static class AddFfPackerContrato
+    {
+        public static final Uri URI_CONTENIDO = URI_BASE.buildUpon().appendPath(RUTA_ADD_TUBING).build();
+
+        public static Uri crearUriAddTubing(String id) {
+            return URI_CONTENIDO.buildUpon().appendPath(id).build();
+        }
+
+        public static String generarIdAddTubing()
+        {
+            return UUID.randomUUID().toString();
+        }
+
+        public static String obtenerIdAddTubing(Uri uri) {
+            return uri.getLastPathSegment();
+        }
+    }
 }

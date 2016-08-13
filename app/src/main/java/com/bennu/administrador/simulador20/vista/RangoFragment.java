@@ -12,6 +12,7 @@ import android.content.Context;
 import android.content.CursorLoader;
 import android.content.Loader;
 import android.database.Cursor;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -50,7 +51,7 @@ public class RangoFragment extends Fragment
     private static final String ARG_PADRE = "boton-padre";
     // TODO: Customize parameters
     private int mColumnCount = 1;
-    private int btnPadre;
+    private int btnPadre; // Identificador del boton utilizado para seleccionar la tabla
     private OnListFragmentInteractionListener mListener;
 
     private ViewAdapter adaptador;
@@ -243,11 +244,55 @@ public class RangoFragment extends Fragment
 
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
+        Uri origenDeDatos = null;
 
-        // Consultar todos los registros
+        switch (btnPadre)
+        {
+            case R.id.btn_casing:
+
+                Toast.makeText(getActivity(), "Boton btn_casing",Toast.LENGTH_SHORT).show();
+                origenDeDatos = Contrato.AddCasingContrato.URI_CONTENIDO;
+                break;
+            case R.id.btn_tubing:
+                Toast.makeText(getActivity(),"Boton btn_tubing",Toast.LENGTH_SHORT).show();
+                origenDeDatos = Contrato.AddTubingContrato.URI_CONTENIDO;
+                break;
+            case R.id.btn_packer:
+                Toast.makeText(getActivity(),"Boton btn_packer",Toast.LENGTH_SHORT).show();
+                break;
+
+            case R.id.btn_ff_up:
+                Toast.makeText(getActivity(),"Boton btn_ff_up",Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.btn_ff_down:
+                Toast.makeText(getActivity(),"Boton btn_ff_down",Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.btn_ff_rotation:
+                Toast.makeText(getActivity(),"Boton btn_ff_rotation",Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.btn_fluid:
+                Toast.makeText(getActivity(),"Boton btn_fluid",Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.btn_temperature:
+                Toast.makeText(getActivity(),"Boton btn_temperature",Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.btn_pressure:
+                Toast.makeText(getActivity(),"Boton btn_pressure",Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.btn_internal_friction:
+                Toast.makeText(getActivity(),"Boton btn_internal_friction",Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.btn_load:
+                Toast.makeText(getActivity(),"Boton btn_load",Toast.LENGTH_SHORT).show();
+                break;
+            default:
+                Toast.makeText(getActivity(),"Opción no existente",Toast.LENGTH_SHORT).show();
+                break;
+        }
+
         return new CursorLoader(
                 getActivity(),
-                Contrato.AddCasingContrato.URI_CONTENIDO,
+                origenDeDatos,
                 null, null, null, null);
     }
 

@@ -6,6 +6,7 @@ import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.ActionBar;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -27,53 +28,51 @@ public class MainActivity extends AppCompatActivity
     private FragmentManager fragmentManager;
     private Fragment fragmentoPrincipal;
     private Toolbar miToolbar;
+    private ActionBar miBarra;
     private FloatingActionButton fab;
+    private DrawerLayout drawer;
+    private ActionBarDrawerToggle toggle;
+
+    private int nivelNavegacion = 0;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+
+        mostrarToolbar();
+        miBarra = getSupportActionBar();
 
         fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.hide();
-/*        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });*/
-
         fab.setOnClickListener( this );
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.setDrawerListener(toggle);
-        toggle.syncState();
+        drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        toggle = new ActionBarDrawerToggle(
+                this, drawer, miToolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.addDrawerListener(toggle);
+
+        toggle.setToolbarNavigationClickListener(this);
+
+        //toggle.syncState();
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
         fragmentManager = getFragmentManager();
 
-        FragmentTransaction transaccion = fragmentManager.beginTransaction();
-
         String parametro1 = "";
         String paramentro2 = "";
 
         fragmentoPrincipal = InicialFragment.newInstance(parametro1, paramentro2 );
 
-        transaccion.replace(R.id.fragment_principal, fragmentoPrincipal);
+        cambiarFragment(fragmentoPrincipal, false);
 
-        transaccion.commit();
 
-        miToolbar = (Toolbar) findViewById( R.id.toolbar );
-
-        miToolbar.setTitle(R.string.titulo_inicial);
     }
+
+
 
     @Override
     public void onBackPressed() {
@@ -81,6 +80,13 @@ public class MainActivity extends AppCompatActivity
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
+            nivelNavegacion--;
+            if ( nivelNavegacion == 1 )
+            {
+                toggle.setDrawerIndicatorEnabled(true);
+                miBarra.setDisplayHomeAsUpEnabled(false);
+                toggle.syncState();
+            }
             super.onBackPressed();
         }
     }
@@ -111,7 +117,6 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
-        FragmentTransaction transaccion = fragmentManager.beginTransaction();
 
        // Toolbar miToolbar = (Toolbar) findViewById( R.id.toolbar );
 
@@ -121,26 +126,28 @@ public class MainActivity extends AppCompatActivity
 
 
         } else if (id == R.id.nav_inputs) {
+
+            miToolbar.setTitle(R.string.titulo_inputs);
+
+            toggle.setDrawerIndicatorEnabled(false); //REVISAR
+
+
             // Preparacion del fragmento principal inicial
             String parametro1 = "";
             String paramentro2 = "";
 
             fragmentoPrincipal = InputFragment.newInstance(parametro1, paramentro2 );
 
-            transaccion.replace(R.id.fragment_principal, fragmentoPrincipal);
+            cambiarFragment(fragmentoPrincipal, true);
 
-            transaccion.commit();
 
-            miToolbar.setTitle(R.string.titulo_inputs);
+
         } else if (id == R.id.nav_outputs) {
             String parametro1 = "";
             String paramentro2 = "";
 
             fragmentoPrincipal = OutputFragment.newInstance(parametro1, paramentro2 );
-
-            transaccion.replace(R.id.fragment_principal, fragmentoPrincipal);
-
-            transaccion.commit();
+            cambiarFragment(fragmentoPrincipal, true);
 
             miToolbar.setTitle(R.string.titulo_outputs);
         } else if (id == R.id.nav_manage) {
@@ -151,7 +158,7 @@ public class MainActivity extends AppCompatActivity
 
         }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        //DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
@@ -169,19 +176,15 @@ public class MainActivity extends AppCompatActivity
 
                 // Carga el fragmento
                 Toast.makeText(this,"Boton btn_casing",Toast.LENGTH_SHORT).show();
-
-                FragmentTransaction transaccion = fragmentManager.beginTransaction();
-
                 fragmentoPrincipal = RangoFragment.newInstance(1, R.id.btn_casing);
-
-                transaccion.replace(R.id.fragment_principal, fragmentoPrincipal );
-
-                transaccion.commit();
+                cambiarFragment(fragmentoPrincipal, true);
 
                 fab.show();
                 break;
             case R.id.btn_tubing:
                 Toast.makeText(this,"Boton btn_tubing",Toast.LENGTH_SHORT).show();
+                fragmentoPrincipal = RangoFragment.newInstance(1, R.id.btn_casing);
+                cambiarFragment(fragmentoPrincipal,true);
                 break;
             case R.id.btn_packer:
                 Toast.makeText(this,"Boton btn_packer",Toast.LENGTH_SHORT).show();
@@ -222,16 +225,15 @@ public class MainActivity extends AppCompatActivity
     public void onListFragmentInteraction(RangoMinimoMaximo item)
     {
 
-        // Proceso para agregar nuevos registros
+        // Proceso para editar registros registros
 
         Toast.makeText(this,"Elemento presionado",Toast.LENGTH_SHORT).show();
-        FragmentTransaction transaccion = fragmentManager.beginTransaction();
+
 
         fragmentoPrincipal = AddCasingFragment.newInstance("","");
 
-        transaccion.replace(R.id.fragment_principal, fragmentoPrincipal );
+        cambiarFragment(fragmentoPrincipal, true);
 
-        transaccion.commit();
 
         fab.setImageResource(R.drawable.ic_create_white_48dp);
 
@@ -249,50 +251,51 @@ public class MainActivity extends AppCompatActivity
 
     // Evento de comportamiento de boton flotante
     @Override
-    public void onClick(View view)
-    {
+    public void onClick(View view) {
         int id = view.getId();
 
-        if (id == R.id.fab)
-        {
-           // Toast.makeText(this,"Boton flotante presionado",Toast.LENGTH_SHORT).show();
-            //Snackbar.make(view, "Botón flotante presionado", Snackbar.LENGTH_LONG).setAction("Action", null).show();
-            //setTitleToolbar(R.string.btn_casing, miToolbar);
+        //int btnPadre = ((RangoFragment) fragmentoPrincipal).getBtnPadre();
 
-            // Carga el fragmento
-            //Toast.makeText(this,"Boton btn_casing",Toast.LENGTH_SHORT).show();
+        switch (id) {
 
-
-            if (fragmentoPrincipal instanceof RangoFragment)
-            {
-
-                int btnPadre = ((RangoFragment) fragmentoPrincipal).getBtnPadre();
-
-                switch (btnPadre)
-                {
-                    case R.id.btn_casing:
-
-                        FragmentTransaction transaccion = fragmentManager.beginTransaction();
-
-                        fragmentoPrincipal = AddCasingFragment.newInstance("","");
-
-                        transaccion.replace(R.id.fragment_principal, fragmentoPrincipal );
-
-                        transaccion.commit();
-
-                        fab.setImageResource(R.drawable.ic_save_white_48dp);
-                        //fab.hide();
-                        break;
-                    case R.id.btn_tubing:
-                        break;
-                }
-
-
-
-            }
-
-
-
+            case R.id.fab:
+                Toast.makeText(this, "Botón flotante presionado", Toast.LENGTH_SHORT).show();
+                break;
+            default:
+                Toast.makeText(this, "Botón de volver presionado", Toast.LENGTH_SHORT).show();
+                onBackPressed();
+                break;
         }
+
     }
+
+    public void cambiarFragment( Fragment fragmento, boolean flecha )
+    {
+        FragmentTransaction transaccion = fragmentManager.beginTransaction();
+
+        transaccion.replace(R.id.fragment_principal, fragmento );
+
+        transaccion.addToBackStack(null);
+
+        miBarra.setDisplayHomeAsUpEnabled(flecha);
+        //getSupportActionBar().setDisplayHomeAsUpEnabled(flecha);
+
+        toggle.setDrawerIndicatorEnabled( ! flecha );
+        miBarra.setDisplayHomeAsUpEnabled( flecha );
+
+        toggle.syncState();
+
+        transaccion.commit();
+
+        nivelNavegacion++;
+    }
+
+
+    private void mostrarToolbar()
+    {
+        miToolbar = (Toolbar) findViewById( R.id.toolbar );
+        setSupportActionBar(miToolbar);
+    }
+
+
 }

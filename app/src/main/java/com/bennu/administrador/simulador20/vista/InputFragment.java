@@ -107,6 +107,8 @@ public class InputFragment extends Fragment implements View.OnClickListener {
             miBoton.setOnClickListener(this);
         }
 
+
+        //getActivity().getActionBar().setDisplayHomeAsUpEnabled(true);
         return vista;
     }
 
