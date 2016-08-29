@@ -24,16 +24,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
-
 import com.bennu.administrador.simulador20.R;
 import com.bennu.administrador.simulador20.datos.Contrato;
 import com.bennu.administrador.simulador20.modelo.RangoMinimoMaximo;
 
-//import android.database.Cursor;
-
-//import android.view.ViewGroup;
-
-//import android.support.v7.widget.GridLayoutManager;
 
 // clases para cargadores asincronos de datos
 
@@ -106,7 +100,7 @@ public class RangoFragment extends Fragment
             case R.id.action_borrar_todos_fragment:
                 Toast.makeText(getActivity(), "Borrar todos los elementos fragmento", Toast.LENGTH_SHORT).show();
                 int resultado = getActivity().getContentResolver().
-                        delete( Contrato.AddCasingContrato.URI_CONTENIDO,null,null );
+                        delete( Contrato.AddCasing.URI_CONTENIDO,null,null );
                 Toast.makeText( getActivity(), "Registros eliminados: " + resultado, Toast.LENGTH_SHORT ).show();
 
                 break;
@@ -161,7 +155,7 @@ public class RangoFragment extends Fragment
     {
         ContentValues contenido = new ContentValues();
 
-       // contenido.put(Contrato.ColumnasAddCasing.ID_ADD_CASING, Contrato.AddCasingContrato.generarIdAddCasing());
+       // contenido.put(Contrato.ColumnasAddCasing.ID_ADD_CASING, Contrato.AddCasing.generarIdAddCasing());
         contenido.put(Contrato.ColumnasAddCasing.RANGO_MINIMO, rangoMinimoMaximo.getMinimo());
         contenido.put(Contrato.ColumnasAddCasing.RANGO_MAXIMO, rangoMinimoMaximo.getMaximo());
 
@@ -181,10 +175,10 @@ public class RangoFragment extends Fragment
         tiempoInicial= System.currentTimeMillis();
         for (int i = 1; i <= 10; i++ ) {
 
-            miContent.insert(Contrato.AddCasingContrato.URI_CONTENIDO, valores( new RangoMinimoMaximo(i, i + 20 ) ) );
+            miContent.insert(Contrato.AddCasing.URI_CONTENIDO, valores( new RangoMinimoMaximo(i, i + 20 ) ) );
 
 //            getActivity().getContentResolver().
-//                    insert(Contrato.AddCasingContrato.URI_CONTENIDO, valores( new RangoMinimoMaximo(i, i + 20 ) ) );
+//                    insert(Contrato.AddCasing.URI_CONTENIDO, valores( new RangoMinimoMaximo(i, i + 20 ) ) );
 
         }
         tiempoFinal = System.currentTimeMillis();
@@ -245,17 +239,16 @@ public class RangoFragment extends Fragment
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
         Uri origenDeDatos = null;
-
         switch (btnPadre)
         {
             case R.id.btn_casing:
 
                 Toast.makeText(getActivity(), "Boton btn_casing",Toast.LENGTH_SHORT).show();
-                origenDeDatos = Contrato.AddCasingContrato.URI_CONTENIDO;
+                origenDeDatos = Contrato.AddCasing.URI_CONTENIDO;
                 break;
             case R.id.btn_tubing:
                 Toast.makeText(getActivity(),"Boton btn_tubing",Toast.LENGTH_SHORT).show();
-                origenDeDatos = Contrato.AddTubingContrato.URI_CONTENIDO;
+                origenDeDatos = Contrato.AddTubing.URI_CONTENIDO;
                 break;
             case R.id.btn_packer:
                 Toast.makeText(getActivity(),"Boton btn_packer",Toast.LENGTH_SHORT).show();
@@ -327,7 +320,7 @@ public class RangoFragment extends Fragment
         id = (int) vh.mItem.getIdPrimario();
         Toast.makeText( getActivity(), "Posición eliminada: " + id, Toast.LENGTH_SHORT  ).show();
         ContentResolver contentResolver = getActivity().getContentResolver();
-        int resultado = contentResolver.delete( Contrato.AddCasingContrato.crearUriAddCasing(String.valueOf(id)),null,null );
+        int resultado = contentResolver.delete( Contrato.AddCasing.crearUri(String.valueOf(id)),null,null );
         adaptador.notifyItemRemoved(position);
         Toast.makeText( getActivity(), "Registros eliminads: " + resultado, Toast.LENGTH_SHORT ).show();
 

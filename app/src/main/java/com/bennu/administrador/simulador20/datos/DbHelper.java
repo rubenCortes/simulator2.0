@@ -21,16 +21,24 @@ public class DbHelper extends SQLiteOpenHelper
     @Override
     public void onCreate(SQLiteDatabase db)
     {
-
         db.execSQL( DataBaseManager.generarTablaAddCasing() );
         db.execSQL( DataBaseManager.generarTablaAddTubing() );
-
+        db.execSQL( DataBaseManager.generarTablaAddPacker() );
+        db.execSQL( DataBaseManager.generarTablaAddFfUp() );
+        db.execSQL( DataBaseManager.generarTablaAddFfDown() );
+        db.execSQL( DataBaseManager.generarTablaAddFfRotation() );
+        db.execSQL( DataBaseManager.generarTablaAddFluid() );
     }
 
     @Override
-    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion)
+    {
         db.execSQL("DROP TABLE IF EXISTS " + DataBaseManager.Tablas.ADD_CASING);
         db.execSQL("DROP TABLE IF EXISTS " + DataBaseManager.Tablas.ADD_TUBING);
-
+        db.execSQL("DROP TABLE IF EXISTS " + DataBaseManager.Tablas.ADD_PACKER);
+        db.execSQL("DROP TABLE IF EXISTS " + DataBaseManager.Tablas.ADD_FF_UP);
+        db.execSQL("DROP TABLE IF EXISTS " + DataBaseManager.Tablas.ADD_FF_DOWN);
+        db.execSQL("DROP TABLE IF EXISTS " + DataBaseManager.Tablas.ADD_FF_ROTATION);
+        db.execSQL("DROP TABLE IF EXISTS " + DataBaseManager.Tablas.ADD_FLUID);
     }
 }

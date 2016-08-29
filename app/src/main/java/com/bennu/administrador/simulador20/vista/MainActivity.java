@@ -183,7 +183,7 @@ public class MainActivity extends AppCompatActivity
                 break;
             case R.id.btn_tubing:
                 Toast.makeText(this,"Boton btn_tubing",Toast.LENGTH_SHORT).show();
-                fragmentoPrincipal = RangoFragment.newInstance(1, R.id.btn_casing);
+                fragmentoPrincipal = RangoFragment.newInstance(1, R.id.btn_tubing);
                 cambiarFragment(fragmentoPrincipal,true);
                 break;
             case R.id.btn_packer:

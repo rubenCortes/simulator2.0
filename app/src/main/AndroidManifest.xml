@@ -19,7 +19,7 @@
             </intent-filter>
         </activity>
         <provider
-            android:name=".datos.ProviderSimulacion4"
+            android:name=".datos.ProviderSimulacion"
             android:authorities="com.bennu.administrador.simulador20.provider"
             android:enabled="true"
             android:exported="false"/>

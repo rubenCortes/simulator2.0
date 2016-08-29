@@ -44,14 +44,13 @@ public class Contrato
         String RANGO_MAXIMO = "rango_maximo";
         String ID = "id";
         String OD = "od";
-        String BURST = "busrt";
+        String BURST = "burst";
         String COLLAPSE = "collapse";
         String TENSION = "tension";
         String COMPRESSION = "compression";
         String HOLDOWN = "holdown";
         String INITIAL_SLACK_OFF = "initial_slack_off";
         String INITIAL_TENSION = "initial_tension";
-
     }
 
     public interface ColumnasAddFfUp
@@ -89,7 +88,7 @@ public class Contrato
         String INITIAL_INTERNAL_FLUID_DENSITY = "initial_internal_fluid_density";
         String INITIAL_EXTERNAL_FLUID_DENSITY = "initial_external_fluid_density";
         String FINAL_INTERNAL_FLUID_DENSITY = "final_internal_fluid_density";
-        String FINAL_EXTERNAL_FLUID_DENSITY = "initial_external_fluid_density";
+        String FINAL_EXTERNAL_FLUID_DENSITY = "final_external_fluid_density";
     }
 
 
@@ -102,7 +101,7 @@ public class Contrato
 
     private static final String RUTA_ADD_CASSING = "add_casing";
     private static final String RUTA_ADD_TUBING = "add_tubing";
-    private static final String RUTA_ADD_PACKER = "add_ff_packer";
+    private static final String RUTA_ADD_PACKER = "add_packer";
     private static final String RUTA_ADD_FF_UP = "add_ff_up";
     private static final String RUTA_ADD_FF_DOWN = "add_ff_down";
     private static final String RUTA_ADD_FF_ROTATION = "add_ff_rotation";
@@ -117,6 +116,7 @@ public class Contrato
     public static final String TIPO_CONTENIDO = "vnd.android.cursor.dir/vnd." + BASE_CONTENIDOS;
 
     public static final String TIPO_CONTENIDO_ITEM = "vnd.android.cursor.item/vnd." + BASE_CONTENIDOS;
+
 
     public static String generarMime(String id) {
         if (id != null) {
@@ -137,56 +137,128 @@ public class Contrato
 
 
 
-    public static class AddCasingContrato
+    public static class AddCasing implements ColumnasAddCasing
     {
         public static final Uri URI_CONTENIDO = URI_BASE.buildUpon().appendPath(RUTA_ADD_CASSING).build();
 
-        public static Uri crearUriAddCasing(String id) {
+        public static Uri crearUri(String id) {
             return URI_CONTENIDO.buildUpon().appendPath(id).build();
         }
 
-        public static String generarIdAddCasing()
+        public static String generarId()
         {
             return UUID.randomUUID().toString();
         }
 
-        public static String obtenerIdAddCasing(Uri uri) {
+        public static String obtenerId(Uri uri) {
             return uri.getLastPathSegment();
         }
     }
 
-    public static class AddTubingContrato
+    public static class AddTubing implements ColumnasAddTubing
     {
         public static final Uri URI_CONTENIDO = URI_BASE.buildUpon().appendPath(RUTA_ADD_TUBING).build();
 
-        public static Uri crearUriAddTubing(String id) {
+        public static Uri crearUri(String id) {
             return URI_CONTENIDO.buildUpon().appendPath(id).build();
         }
 
-        public static String generarIdAddTubing()
+        public static String generarId()
         {
             return UUID.randomUUID().toString();
         }
 
-        public static String obtenerIdAddTubing(Uri uri) {
+        public static String obtenerId(Uri uri) {
             return uri.getLastPathSegment();
         }
     }
 
-    public static class AddFfPackerContrato
+    public static class AddPacker implements ColumnasAddPacker
     {
-        public static final Uri URI_CONTENIDO = URI_BASE.buildUpon().appendPath(RUTA_ADD_TUBING).build();
+        public static final Uri URI_CONTENIDO = URI_BASE.buildUpon().appendPath(RUTA_ADD_PACKER).build();
 
-        public static Uri crearUriAddTubing(String id) {
+        public static Uri crearUri(String id) {
             return URI_CONTENIDO.buildUpon().appendPath(id).build();
         }
 
-        public static String generarIdAddTubing()
+        public static String generarId()
         {
             return UUID.randomUUID().toString();
         }
 
-        public static String obtenerIdAddTubing(Uri uri) {
+        public static String obtenerId(Uri uri) {
+            return uri.getLastPathSegment();
+        }
+    }
+
+    public static class AddFfUp implements ColumnasAddFfUp
+    {
+        public static final Uri URI_CONTENIDO = URI_BASE.buildUpon().appendPath(RUTA_ADD_FF_UP).build();
+
+        public static Uri crearUri(String id) {
+            return URI_CONTENIDO.buildUpon().appendPath(id).build();
+        }
+
+        public static String generarId()
+        {
+            return UUID.randomUUID().toString();
+        }
+
+        public static String obtenerId(Uri uri) {
+            return uri.getLastPathSegment();
+        }
+    }
+
+    public static class AddFfDown implements ColumnasAddFfDown
+    {
+        public static final Uri URI_CONTENIDO = URI_BASE.buildUpon().appendPath(RUTA_ADD_FF_DOWN).build();
+
+        public static Uri crearUri(String id) {
+            return URI_CONTENIDO.buildUpon().appendPath(id).build();
+        }
+
+        public static String generarId()
+        {
+            return UUID.randomUUID().toString();
+        }
+
+        public static String obtenerId(Uri uri) {
+            return uri.getLastPathSegment();
+        }
+    }
+
+    public static class AddFfRotation implements ColumnasAddFfRotation
+    {
+        public static final Uri URI_CONTENIDO = URI_BASE.buildUpon().appendPath(RUTA_ADD_FF_ROTATION).build();
+
+        public static Uri crearUri(String id) {
+            return URI_CONTENIDO.buildUpon().appendPath(id).build();
+        }
+
+        public static String generarId()
+        {
+            return UUID.randomUUID().toString();
+        }
+
+        public static String obtenerId(Uri uri) {
+            return uri.getLastPathSegment();
+        }
+    }
+
+    public static class AddFluid implements ColumnasAddFluid
+    {
+        public static final Uri URI_CONTENIDO = URI_BASE.buildUpon().appendPath(RUTA_ADD_FLUID).build();
+
+        public static Uri crearUri(String id) {
+            return URI_CONTENIDO.buildUpon().appendPath(id).build();
+        }
+
+        public static String generarId()
+        {
+            return UUID.randomUUID().toString();
+        }
+
+        public static String obtenerId(Uri uri) {
             return uri.getLastPathSegment();
         }
     }
